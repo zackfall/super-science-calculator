@@ -29,3 +29,13 @@ pub fn log_b(num: f64, base: f64) -> f64 {
 pub fn ln(num: f64) -> f64 {
     format_number(num.ln())
 }
+
+#[tauri::command]
+pub fn factorial(num: u32) -> f64 {
+    let mut res = 1;
+    for i in 1..=num {
+        res *= i;
+    }
+
+    format_number(res as f64)
+}
