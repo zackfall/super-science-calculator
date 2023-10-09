@@ -9,10 +9,7 @@ use commands::{advanced_operations, operations};
 fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
-            operations::divide,
-            operations::multiply,
-            operations::substract,
-            operations::sum,
+            operations::basic_operation,
             advanced_operations::expon,
             advanced_operations::factorial,
             advanced_operations::ln,
