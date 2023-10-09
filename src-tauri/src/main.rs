@@ -4,7 +4,7 @@
 mod commands;
 mod types;
 
-use commands::{advanced_operations, operations};
+use commands::{advanced_operations, operations, trigonometrics};
 
 fn main() {
     tauri::Builder::default()
@@ -16,7 +16,13 @@ fn main() {
             advanced_operations::log,
             advanced_operations::log_b,
             advanced_operations::root,
-            advanced_operations::sqrt
+            advanced_operations::sqrt,
+            trigonometrics::sin,
+            trigonometrics::cos,
+            trigonometrics::tan,
+            trigonometrics::cot,
+            trigonometrics::sec,
+            trigonometrics::csc
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
