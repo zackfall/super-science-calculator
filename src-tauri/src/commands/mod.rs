@@ -1,4 +1,3 @@
-pub mod advanced_operations;
 pub mod operations;
 pub mod trigonometrics;
 

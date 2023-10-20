@@ -4,19 +4,19 @@
 mod commands;
 mod types;
 
-use commands::{advanced_operations, operations, trigonometrics};
+use commands::{operations, trigonometrics};
+use types::{
+    operation::{BasicOperation, Operation},
+    sign::Sign,
+};
+
+use crate::types::operation::{AdvancedOperation, AdvancedOperations};
 
 fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
             operations::basic_operation,
-            advanced_operations::expon,
-            advanced_operations::factorial,
-            advanced_operations::ln,
-            advanced_operations::log,
-            advanced_operations::log_b,
-            advanced_operations::root,
-            advanced_operations::sqrt,
+            operations::advanced_operations,
             trigonometrics::sin,
             trigonometrics::cos,
             trigonometrics::tan,
