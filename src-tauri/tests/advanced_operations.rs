@@ -75,10 +75,16 @@ fn test_root() {
         index: None,
     };
     let root4_result = root4.root();
+    let root5 = AdvancedOperation {
+        base: 4.0,
+        index: Some(0),
+    };
+    let root5_result = root5.root();
     assert_eq!(root1_result.unwrap(), 3.0);
     assert_eq!(root2_result.unwrap(), 2.0);
     assert_eq!(root3_result, Err(MathError::MinusBasedError));
     assert_eq!(root4_result, Err(MathError::IncorrectExponent));
+    assert_eq!(root5_result, Err(MathError::IncorrectExponent));
 }
 
 #[test]
@@ -101,4 +107,32 @@ fn test_log() {
     assert_eq!(format_number(log1_result.unwrap()), 0.9542);
     assert_eq!(format_number(log2_result.unwrap()), 0.6021);
     assert_eq!(log3_result, Err(MathError::LogBaseNotMinorThanZero));
+}
+
+#[test]
+fn test_logb() {
+    let log1 = AdvancedOperation {
+        base: 10f64,
+        index: Some(4),
+    };
+    let log1_result = log1.log_b();
+    let log2 = AdvancedOperation {
+        base: 77f64,
+        index: Some(8),
+    };
+    let log2_result = log2.log_b();
+    let log3 = AdvancedOperation {
+        base: 0f64,
+        index: Some(4),
+    };
+    let log3_result = log3.log_b();
+    let log4 = AdvancedOperation {
+        base: 10f64,
+        index: Some(0),
+    };
+    let log4_result = log4.log_b();
+    assert_eq!(format_number(log1_result.unwrap()), 1.661);
+    assert_eq!(format_number(log2_result.unwrap()), 2.0889);
+    assert_eq!(log3_result, Err(MathError::LogBaseNotMinorThanZero));
+    assert_eq!(log4_result, Err(MathError::IncorrectExponent));
 }
