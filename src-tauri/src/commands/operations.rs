@@ -124,4 +124,32 @@ mod tests {
         assert_eq!(sqrt2_result.unwrap(), 2.0);
         assert_eq!(sqrt3_result, Err(MathError::MinusBasedError));
     }
+
+    #[test]
+    fn test_root() {
+        let root1 = AdvancedOperation {
+            base: 9.0,
+            index: Some(2),
+        };
+        let root1_result = root1.root();
+        let root2 = AdvancedOperation {
+            base: 4.0,
+            index: Some(2),
+        };
+        let root2_result = root2.root();
+        let root3 = AdvancedOperation {
+            base: -4.0,
+            index: Some(2),
+        };
+        let root3_result = root3.root();
+        let root4 = AdvancedOperation {
+            base: -4.0,
+            index: None,
+        };
+        let root4_result = root4.root();
+        assert_eq!(root1_result.unwrap(), 3.0);
+        assert_eq!(root2_result.unwrap(), 2.0);
+        assert_eq!(root3_result, Err(MathError::MinusBasedError));
+        assert_eq!(root4_result, Err(MathError::IncorrectExponent));
+    }
 }
