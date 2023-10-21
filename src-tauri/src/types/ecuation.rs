@@ -1,6 +1,6 @@
-use super::operation::Operation;
+use super::operations::Operation;
 
 pub struct Equation {
-    rhs: Operation,
     lhs: Operation,
+    rhs: Operation,
 }

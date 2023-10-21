@@ -5,12 +5,6 @@ mod commands;
 mod types;
 
 use commands::{operations, trigonometrics};
-use types::{
-    operation::{BasicOperation, Operation},
-    sign::Sign,
-};
-
-use crate::types::operation::{AdvancedOperation, AdvancedOperations};
 
 fn main() {
     tauri::Builder::default()

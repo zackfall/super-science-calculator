@@ -1,4 +1,4 @@
 pub mod ecuation;
 pub mod errors;
-pub mod operation;
+pub mod operations;
 pub mod sign;

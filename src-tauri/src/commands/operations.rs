@@ -1,6 +1,6 @@
 use crate::types::errors::{MathError, Result};
-use crate::types::operation::AdvancedOperations;
-use crate::types::{operation::Operation, sign::Sign};
+use crate::types::operations::advanced_operation::AdvancedOperations;
+use crate::types::{operations::Operation, sign::Sign};
 
 use super::format_number;
 
