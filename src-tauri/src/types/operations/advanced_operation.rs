@@ -3,6 +3,17 @@ use serde::{Deserialize, Serialize};
 use crate::types::errors::{MathError, Result};
 
 #[derive(Debug, Serialize, Deserialize)]
+pub enum AdvancedOperations {
+    Expon(AdvancedOperation),
+    Sqrt(AdvancedOperation),
+    Root(AdvancedOperation),
+    Log(AdvancedOperation),
+    LogB(AdvancedOperation),
+    Ln(AdvancedOperation),
+    Factorial(AdvancedOperation),
+}
+
+#[derive(Debug, Serialize, Deserialize)]
 pub struct AdvancedOperation {
     pub base: f64,
     pub index: Option<u32>,
@@ -69,15 +80,4 @@ impl AdvancedOperation {
             _ => Err(MathError::InvalidFactorialBase),
         }
     }
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-pub enum AdvancedOperations {
-    Expon(AdvancedOperation),
-    Sqrt(AdvancedOperation),
-    Root(AdvancedOperation),
-    Log(AdvancedOperation),
-    LogB(AdvancedOperation),
-    Ln(AdvancedOperation),
-    Factorial(AdvancedOperation),
 }
