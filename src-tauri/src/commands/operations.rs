@@ -54,7 +54,6 @@ pub fn trigonometric_operations(operation: Operation) -> Result<f64> {
 
 #[cfg(test)]
 mod tests {
-    use crate::types::operations::advanced_operation::AdvancedOperation;
     use crate::types::operations::basic_operation::BasicOperation;
 
     use super::*;

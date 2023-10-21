@@ -1,5 +1,6 @@
-use super_science_calculator::types::{
-    errors::MathError, operations::advanced_operation::AdvancedOperation,
+use super_science_calculator::{
+    commands::format_number,
+    types::{errors::MathError, operations::advanced_operation::AdvancedOperation},
 };
 
 #[test]
@@ -78,4 +79,26 @@ fn test_root() {
     assert_eq!(root2_result.unwrap(), 2.0);
     assert_eq!(root3_result, Err(MathError::MinusBasedError));
     assert_eq!(root4_result, Err(MathError::IncorrectExponent));
+}
+
+#[test]
+fn test_log() {
+    let log1 = AdvancedOperation {
+        base: 9.0,
+        index: None,
+    };
+    let log1_result = log1.log();
+    let log2 = AdvancedOperation {
+        base: 4.0,
+        index: None,
+    };
+    let log2_result = log2.log();
+    let log3 = AdvancedOperation {
+        base: -10.0,
+        index: None,
+    };
+    let log3_result = log3.log();
+    assert_eq!(format_number(log1_result.unwrap()), 0.9542);
+    assert_eq!(format_number(log2_result.unwrap()), 0.6021);
+    assert_eq!(log3_result, Err(MathError::LogBaseNotMinorThanZero));
 }
