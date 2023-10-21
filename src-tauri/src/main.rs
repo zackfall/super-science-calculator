@@ -4,19 +4,14 @@
 mod commands;
 mod types;
 
-use commands::{operations, trigonometrics};
+use commands::operations;
 
 fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
             operations::basic_operation,
             operations::advanced_operations,
-            trigonometrics::sin,
-            trigonometrics::cos,
-            trigonometrics::tan,
-            trigonometrics::cot,
-            trigonometrics::sec,
-            trigonometrics::csc
+            operations::trigonometric_operations
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
