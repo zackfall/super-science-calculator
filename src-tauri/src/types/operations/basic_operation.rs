@@ -9,9 +9,9 @@ use crate::types::{
 pub struct BasicOperation(f64, Sign, f64);
 
 impl BasicOperation {
-    // pub fn new(lhs: f64, sign: Sign, rhs: f64) -> Self {
-    //     Self(lhs, sign, rhs)
-    // }
+    pub fn new(lhs: f64, sign: Sign, rhs: f64) -> Self {
+        Self(lhs, sign, rhs)
+    }
 
     pub fn sum(&self) -> Result<f64> {
         Ok(self.0 + self.2)

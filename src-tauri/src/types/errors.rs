@@ -3,7 +3,7 @@ use thiserror::Error;
 
 pub type Result<T> = std::result::Result<T, MathError>;
 
-#[derive(Debug, Serialize, Deserialize, Clone, Error)]
+#[derive(Debug, Serialize, Deserialize, Clone, Error, PartialEq)]
 pub enum MathError {
     #[error("MathError: Division by zero is undefined")]
     DivisionByZero,
