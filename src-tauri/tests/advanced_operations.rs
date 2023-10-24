@@ -136,3 +136,32 @@ fn test_logb() {
     assert_eq!(log3_result, Err(MathError::LogBaseNotMinorThanZero));
     assert_eq!(log4_result, Err(MathError::IncorrectExponent));
 }
+
+#[test]
+fn test_ln() {
+    let ln1 = AdvancedOperation {
+        base: 9.0,
+        index: None,
+    };
+    let ln1_result = ln1.ln();
+    let ln2 = AdvancedOperation {
+        base: 4.0,
+        index: None,
+    };
+    let ln2_result = ln2.ln();
+    let ln3 = AdvancedOperation {
+        base: -4.0,
+        index: None,
+    };
+    let ln3_result = ln3.ln();
+    let ln4 = AdvancedOperation {
+        base: 0.0,
+        index: None,
+    };
+    let ln4_result = ln4.ln();
+
+    assert_eq!(format_number(ln1_result.unwrap()), 2.1972);
+    assert_eq!(format_number(ln2_result.unwrap()), 1.3863);
+    assert_eq!(ln3_result, Err(MathError::LogBaseNotMinorThanZero));
+    assert_eq!(ln4_result, Err(MathError::LogBaseNotMinorThanZero));
+}

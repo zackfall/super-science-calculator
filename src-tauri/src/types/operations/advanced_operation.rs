@@ -69,7 +69,7 @@ impl AdvancedOperation {
 
     pub fn ln(&self) -> Result<f64> {
         match self.base <= 0.0 {
-            true => Err(MathError::MinusBasedError),
+            true => Err(MathError::LogBaseNotMinorThanZero),
             false => Ok(self.base.ln()),
         }
     }
