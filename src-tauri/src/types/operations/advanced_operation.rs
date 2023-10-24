@@ -75,6 +75,9 @@ impl AdvancedOperation {
     }
 
     pub fn factorial(&self) -> Result<f64> {
+        if self.base < 0.0 {
+            return Err(MathError::MinusBasedError);
+        }
         let mut res = 1;
         for i in 1..=self.base as i32 {
             res *= i;

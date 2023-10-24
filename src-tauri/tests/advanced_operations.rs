@@ -165,3 +165,32 @@ fn test_ln() {
     assert_eq!(ln3_result, Err(MathError::LogBaseNotMinorThanZero));
     assert_eq!(ln4_result, Err(MathError::LogBaseNotMinorThanZero));
 }
+
+#[test]
+fn test_factorial() {
+    let fact1 = AdvancedOperation {
+        base: 5.0,
+        index: None,
+    };
+    let fact1_result = fact1.factorial();
+    let fact2 = AdvancedOperation {
+        base: 10.0,
+        index: None,
+    };
+    let fact2_result = fact2.factorial();
+    let fact3 = AdvancedOperation {
+        base: 0.0,
+        index: None,
+    };
+    let fact3_result = fact3.factorial();
+    let fact4 = AdvancedOperation {
+        base: -5.0,
+        index: None,
+    };
+    let fact4_result = fact4.factorial();
+
+    assert_eq!(format_number(fact1_result.unwrap()), 120.0);
+    assert_eq!(format_number(fact2_result.unwrap()), 3628800.0);
+    assert_eq!(format_number(fact3_result.unwrap()), 1.0);
+    assert_eq!(fact4_result, Err(MathError::MinusBasedError));
+}
