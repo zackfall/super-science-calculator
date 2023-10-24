@@ -36,9 +36,12 @@ impl AdvancedOperation {
 
     pub fn root(&self) -> Result<f64> {
         match self.index {
-            Some(index) => match self.base < 0.0 {
-                true => Err(MathError::MinusBasedError),
-                false => Ok(self.base.powf(1.0 / index as f64)),
+            Some(index) => match index == 0 {
+                true => Err(MathError::IncorrectExponent),
+                false => match self.base < 0.0 {
+                    true => Err(MathError::MinusBasedError),
+                    false => Ok(self.base.powf(1.0 / index as f64)),
+                },
             },
             None => Err(MathError::IncorrectExponent),
         }
@@ -53,9 +56,12 @@ impl AdvancedOperation {
 
     pub fn log_b(&self) -> Result<f64> {
         match self.index {
-            Some(index) => match self.base <= 0.0 {
-                true => Err(MathError::LogBaseNotMinorThanZero),
-                false => Ok(self.base.ln() / (index as f64).ln()),
+            Some(index) => match index == 0 {
+                true => Err(MathError::IncorrectExponent),
+                false => match self.base <= 0.0 {
+                    true => Err(MathError::LogBaseNotMinorThanZero),
+                    false => Ok(self.base.ln() / (index as f64).ln()),
+                },
             },
             None => Err(MathError::IncorrectExponent),
         }
@@ -63,21 +69,19 @@ impl AdvancedOperation {
 
     pub fn ln(&self) -> Result<f64> {
         match self.base <= 0.0 {
-            true => Err(MathError::MinusBasedError),
+            true => Err(MathError::LogBaseNotMinorThanZero),
             false => Ok(self.base.ln()),
         }
     }
 
     pub fn factorial(&self) -> Result<f64> {
-        match self.index {
-            Some(index) => {
-                let mut res = 1;
-                for i in 1..=index {
-                    res *= i;
-                }
-                Ok(res as f64)
-            }
-            _ => Err(MathError::InvalidFactorialBase),
+        if self.base < 0.0 {
+            return Err(MathError::MinusBasedError);
         }
+        let mut res = 1;
+        for i in 1..=self.base as i32 {
+            res *= i;
+        }
+        Ok(res as f64)
     }
 }
